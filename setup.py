@@ -73,7 +73,7 @@ if __name__ == "__main__":
             # Register the AutoItX COM object
             # and make its methods known to Python
             #
-            cmd = r"%SYSTEMROOT%\system32\regsvr32.exe /S " + quote(instFile)
+            cmd = r'%SYSTEMROOT%\system32\regsvr32.exe /S ' + quote(instFile)
             print(cmd)
             subprocess.check_call(cmd, shell=True)
             makepy = os.path.normpath(os.path.join(get_python_lib(), "win32com/client/makepy.py"))
