@@ -45,6 +45,9 @@ object and provides additional high-level keywords implemented as
 methods in this class.
 """[1:-1]
 
+def quote(value):
+    return '"' + value + '"'
+
 if __name__ == "__main__":
     #
     # Install the 3rd party packages
@@ -70,7 +73,7 @@ if __name__ == "__main__":
             # Register the AutoItX COM object
             # and make its methods known to Python
             #
-            cmd = r"%SYSTEMROOT%\system32\regsvr32.exe /S " + instFile
+            cmd = r"%SYSTEMROOT%\system32\regsvr32.exe /S " + quote(instFile)
             print(cmd)
             subprocess.check_call(cmd, shell=True)
             makepy = os.path.normpath(os.path.join(get_python_lib(), "win32com/client/makepy.py"))
@@ -81,7 +84,7 @@ if __name__ == "__main__":
                 print("AutoItLibrary requires win32com. See http://starship.python.net/crew/mhammond/win32/.")
                 sys.exit(2)
 
-            cmd = "python %s %s" % (makepy, instFile)
+            cmd = "python %s %s" % (quote(makepy), quote(instFile))
             print(cmd)
             subprocess.check_call(cmd)
         else :
